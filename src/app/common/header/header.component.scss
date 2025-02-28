@@ -1,0 +1,17 @@
+.spacer {
+  flex: 1;
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+}

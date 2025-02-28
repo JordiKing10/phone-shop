@@ -1,1 +1,15 @@
-<p>header works!</p>
+<mat-toolbar color="primary">
+  <span class="logo">
+    <a routerLink="/" mat-button>
+      <mat-icon>storefront</mat-icon> Phone Shop
+    </a>
+  </span>
+
+  <span class="spacer"></span>
+
+  <nav>
+    <a routerLink="/cart" mat-button>
+      <mat-icon matBadge="{{ cartCount() }}" matBadgeColor="warn">shopping_cart</mat-icon>
+    </a>
+  </nav>
+</mat-toolbar>
