@@ -9,5 +9,4 @@ import { CommonModule } from './common/common.module';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'phone-shop';
 }

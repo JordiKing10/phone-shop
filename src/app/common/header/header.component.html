@@ -1,15 +1,29 @@
 <mat-toolbar color="primary">
-  <span class="logo">
-    <a routerLink="/" mat-button>
-      <mat-icon>storefront</mat-icon> Phone Shop
+  <!-- Sección izquierda: Logo y botón de tema -->
+  <div class="toolbar-left">
+    <a routerLink="/" class="logo" mat-button>
+      <mat-icon aria-hidden="false" aria-label="Tienda">storefront</mat-icon>
+      <span class="brand-title">Phone Shop</span>
     </a>
-  </span>
+    <button
+      mat-icon-button
+      (click)="toggleTheme()"
+      aria-label="Cambiar tema"
+      class="dark-mode-btn"
+    >
+      <mat-icon>{{ darkMode ? 'dark_mode' : 'light_mode' }}</mat-icon>
+    </button>
+  </div>
 
-  <span class="spacer"></span>
+  <div class="toolbar-center">
+    <app-search></app-search>
+  </div>
 
-  <nav>
-    <a routerLink="/cart" mat-button>
-      <mat-icon matBadge="{{ cartCount() }}" matBadgeColor="warn">shopping_cart</mat-icon>
+  <div class="toolbar-right">
+    <a routerLink="/cart" mat-icon-button aria-label="Carrito">
+      <mat-icon [matBadge]="cartCount()" matBadgeColor="warn">
+        shopping_cart
+      </mat-icon>
     </a>
-  </nav>
+  </div>
 </mat-toolbar>
