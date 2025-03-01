@@ -1,0 +1,15 @@
+<div class="checkout-dialog">
+  <h2 *ngIf="isProcessing(); else successMessage">Processing your order...</h2>
+
+  <div class="spinner-container" *ngIf="isProcessing()">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+
+  <ng-template #successMessage>
+    <h2>Order Successful!</h2>
+    <p>
+      Your order of {{ data.total | currency }} has been placed successfully.
+    </p>
+    <button mat-flat-button color="primary" (click)="closeDialog()">OK</button>
+  </ng-template>
+</div>

@@ -8,6 +8,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MasterStore } from '@app/store/master.store';
+import { MatDialog } from '@angular/material/dialog';
+import { CheckoutDialogComponent } from './checkout-dialog/checkout-dialog.component';
 
 @Component({
   selector: 'app-checkout',
@@ -25,7 +27,9 @@ import { MasterStore } from '@app/store/master.store';
   styleUrl: './checkout.component.scss',
 })
 export class CheckoutComponent {
+  private readonly dialog = inject(MatDialog);
   private readonly masterStore = inject(MasterStore);
+
   readonly cart = this.masterStore.cart;
   readonly cartCount = this.masterStore.cartCount;
 
@@ -52,5 +56,21 @@ export class CheckoutComponent {
 
   clearCart(): void {
     this.masterStore.cart.set([]);
+  }
+
+  openConfirmationDialog(): void {
+    this.dialog.open(CheckoutDialogComponent, {
+      width: '400px',
+      data: {
+        total: this.getTotalPrice(),
+        cart: this.cart().map((item) => ({
+          id: item.id,
+          quantity: item.quantity,
+          price: item.price,
+        })),
+        cartCount: this.cartCount(),
+      },
+      disableClose: true,
+    });
   }
 }

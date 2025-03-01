@@ -35,7 +35,13 @@
         <button mat-stroked-button color="warn" (click)="clearCart()">
           Clear Cart
         </button>
-        <button mat-flat-button color="primary">Proceed to Payment</button>
+        <button
+          mat-flat-button
+          color="primary"
+          (click)="openConfirmationDialog()"
+        >
+          Proceed to Payment
+        </button>
       </div>
     </div>
   </mat-card>
