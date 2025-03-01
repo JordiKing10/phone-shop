@@ -1,1 +1,47 @@
-<p>product-list works!</p>
+<div class="product-list-container">
+  <div class="search-wrapper">
+    <div class="search-container">
+      <input
+        type="text"
+        class="custom-search-input"
+        [(ngModel)]="searchTerm"
+        placeholder="Search..."
+      />
+      <button
+        mat-icon-button
+        class="clear-button"
+        *ngIf="searchTerm"
+        (click)="clearSearch()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="product-grid">
+    <mat-card
+      *ngFor="let product of paginatedProducts()"
+      class="product-card"
+      (click)="navigateToProduct(product.id)"
+    >
+      <mat-card-header>
+        <mat-card-title>
+          {{ product.brand }} - {{ product.model }}
+        </mat-card-title>
+      </mat-card-header>
+      <img mat-card-image [src]="getProductImage(product)" alt="Product" />
+      <mat-card-content>
+        <p>Price: {{ product.price | currency }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <footer class="footer">
+    <mat-paginator
+      [length]="filteredProducts().length"
+      [pageSize]="pageSize()"
+      [pageSizeOptions]="[8]"
+      (page)="onPageChange($event)"
+    ></mat-paginator>
+  </footer>
+</div>
