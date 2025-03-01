@@ -7,7 +7,6 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DEFAULT_DARK_MODE } from '../../config/constants';
-import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +18,6 @@ import { SearchComponent } from '../search/search.component';
     MatBadgeModule,
     MatButtonModule,
     MatSlideToggleModule,
-    SearchComponent,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',

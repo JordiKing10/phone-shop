@@ -6,6 +6,8 @@ mat-toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 56px; // Tamaño estándar en Angular Material, se adapta bien a móvil y escritorio
+  flex-shrink: 0; // Evita que el header altere el tamaño del grid
 }
 
 .toolbar-left {
@@ -23,6 +25,10 @@ mat-toolbar {
 .brand-title {
   margin-left: 8px;
   font-weight: 500;
+
+  @media (max-width: 767px) {
+    display: none; // Oculta "Phone Shop" en móviles
+  }
 }
 
 .dark-mode-btn {

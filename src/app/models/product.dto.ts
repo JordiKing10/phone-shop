@@ -11,4 +11,5 @@ export interface ProductDTO {
   cameras: string;
   dimensions: string;
   weight: string;
+  imageUrl?: string;
 }

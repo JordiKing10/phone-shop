@@ -1,5 +1,4 @@
 <mat-toolbar color="primary">
-  <!-- Sección izquierda: Logo y botón de tema -->
   <div class="toolbar-left">
     <a routerLink="/" class="logo" mat-button>
       <mat-icon aria-hidden="false" aria-label="Tienda">storefront</mat-icon>
@@ -13,10 +12,6 @@
     >
       <mat-icon>{{ darkMode ? 'dark_mode' : 'light_mode' }}</mat-icon>
     </button>
-  </div>
-
-  <div class="toolbar-center">
-    <app-search></app-search>
   </div>
 
   <div class="toolbar-right">
