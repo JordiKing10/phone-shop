@@ -24,19 +24,16 @@
       class="product-card"
       (click)="navigateToProduct(product.id)"
     >
-      <!-- Imagen del producto -->
       <div class="image-container">
         <img mat-card-image [src]="getProductImage(product)" alt="Product" />
       </div>
 
-      <!-- Contenido del producto -->
       <mat-card-content class="product-info">
         <mat-card-title>
           {{ product.brand }} - {{ product.model }}
         </mat-card-title>
         <p class="price">{{ product.price | currency }}</p>
 
-        <!-- Información rápida -->
         <div class="quick-specs">
           <span>
             <mat-icon>memory</mat-icon>
@@ -53,6 +50,10 @@
         </div>
       </mat-card-content>
     </mat-card>
+  </div>
+
+  <div *ngIf="filteredProducts().length === 0" class="empty-state">
+    <p>No products available</p>
   </div>
 
   <footer class="footer">

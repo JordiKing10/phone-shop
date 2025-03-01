@@ -19,7 +19,6 @@ mat-toolbar {
   display: flex;
   flex-direction: column;
   flex: 1;
-  overflow-y: auto;
 }
 
 .search-wrapper {
@@ -71,6 +70,7 @@ mat-toolbar {
 }
 
 .product-grid {
+  flex-grow: 1;
   display: grid;
   padding: 16px;
   gap: 16px;
@@ -104,7 +104,7 @@ mat-toolbar {
   flex-shrink: 0;
   padding: 16px;
   text-align: center;
-  margin-top: 16px;
+  margin-top: auto;
 }
 
 .image-container {
@@ -149,4 +149,15 @@ mat-toolbar {
   mat-icon {
     font-size: 18px;
   }
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 20px;
 }
