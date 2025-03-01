@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
+import { MasterStore } from '@app/store/master.store';
 
 @Component({
   selector: 'app-product-details',
@@ -25,37 +26,36 @@ import { FormsModule } from '@angular/forms';
 export class ProductDetailsComponent {
   private readonly productService = inject(ProductService);
   private readonly route = inject(ActivatedRoute);
+  public readonly masterStore = inject(MasterStore);
 
-  product = signal<ProductDTO | null>(null);
-  selectedColor = signal<{ code: string; name: string }>({
-    code: 'default',
-    name: 'Default',
-  });
-  selectedStorage = signal<{ code: string; capacity: string }>({
-    code: 'default',
-    capacity: 'Default',
-  });
+  readonly product = signal<ProductDTO | null>(null);
 
   constructor() {
     const productId = this.route.snapshot.paramMap.get('id');
     if (productId) {
       this.productService.getProductById(productId).subscribe((product) => {
         this.product.set(product);
-        if (product.colors && product.colors.length > 0) {
-          this.selectedColor.set(product.colors[0]);
-        }
-        if (product.storages && product.storages.length > 0) {
-          this.selectedStorage.set(product.storages[0]);
-        }
+
+        this.masterStore.setColor(
+          product.colors?.length ? product.colors[0] : null
+        );
+
+        this.masterStore.setStorage(
+          product.storages?.length ? product.storages[0] : null
+        );
       });
     }
   }
 
-  selectColor(color: { code: string; name: string }): void {
-    this.selectedColor.set(color);
-  }
+  addToCart(): void {
+    const currentProduct = this.product();
+    if (!currentProduct) return;
 
-  selectStorage(storage: { code: string; capacity: string }): void {
-    this.selectedStorage.set(storage);
+    this.masterStore.addToCart({
+      id: currentProduct.id,
+      brand: currentProduct.brand,
+      model: currentProduct.model,
+      price: currentProduct.price,
+    });
   }
 }

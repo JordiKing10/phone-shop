@@ -54,8 +54,8 @@
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Color</mat-label>
           <mat-select
-            [value]="selectedColor()"
-            (selectionChange)="selectColor($event.value)"
+            [value]="masterStore.selectedColor()"
+            (selectionChange)="masterStore.setColor($event.value)"
             [disabled]="p.colors?.length === 0"
           >
             <mat-option *ngFor="let color of p.colors" [value]="color">
@@ -67,8 +67,8 @@
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Storage</mat-label>
           <mat-select
-            [value]="selectedStorage()"
-            (selectionChange)="selectStorage($event.value)"
+            [value]="masterStore.selectedStorage()"
+            (selectionChange)="masterStore.setStorage($event.value)"
             [disabled]="p.storages?.length === 0"
           >
             <mat-option *ngFor="let storage of p.storages" [value]="storage">
@@ -80,7 +80,9 @@
 
       <mat-card-actions>
         <button mat-raised-button color="primary">Buy Now</button>
-        <button mat-raised-button color="accent">Add to Cart</button>
+        <button mat-raised-button color="accent" (click)="addToCart()">
+          Add to Cart
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>
