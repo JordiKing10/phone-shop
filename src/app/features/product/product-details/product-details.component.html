@@ -1,1 +1,64 @@
-<p>product-details works!</p>
+<div class="product-details-container" *ngIf="product() as p">
+  <!-- Imagen a la izquierda -->
+  <div class="product-image">
+    <img [src]="p.imageUrl || 'assets/placeholder.svg'" alt="{{ p.model }}" />
+  </div>
+
+  <!-- Contenido a la derecha -->
+  <div class="product-content">
+    <!-- Descripción del producto -->
+    <mat-card class="product-description">
+      <mat-card-title>{{ p.brand }} - {{ p.model }}</mat-card-title>
+      <!-- //TODO: ADD TRANSLATION -->
+      <mat-card-content>
+        <p>
+          <strong>Price:</strong>
+          {{ p.price | currency }}
+        </p>
+        <p>
+          <strong>CPU:</strong>
+          {{ p.cpu }}
+        </p>
+        <p>
+          <strong>RAM:</strong>
+          {{ p.ram }}
+        </p>
+        <p>
+          <strong>OS:</strong>
+          {{ p.os }}
+        </p>
+        <p>
+          <strong>Resolution:</strong>
+          {{ p.displayResolution }}
+        </p>
+        <p>
+          <strong>Battery:</strong>
+          {{ p.battery }}
+        </p>
+        <p>
+          <strong>Cameras:</strong>
+          {{ p.cameras }}
+        </p>
+        <p>
+          <strong>Dimensions:</strong>
+          {{ p.dimensions }}
+        </p>
+        <p>
+          <strong>Weight:</strong>
+          {{ p.weight }}
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Acciones (selección de variantes y botones) -->
+    <mat-card class="product-actions">
+      <mat-card-content>
+        <p>Configure your product before purchase:</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary">Buy Now</button>
+        <button mat-raised-button color="accent">Add to Cart</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
