@@ -12,4 +12,6 @@ export interface ProductDTO {
   dimensions: string;
   weight: string;
   imageUrl?: string;
+  colors?: { code: string; name: string }[];
+  storages?: { code: string; capacity: string }[];
 }

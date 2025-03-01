@@ -1,12 +1,9 @@
 <div class="product-details-container" *ngIf="product() as p">
-  <!-- Imagen a la izquierda -->
   <div class="product-image">
     <img [src]="p.imageUrl || 'assets/placeholder.svg'" alt="{{ p.model }}" />
   </div>
 
-  <!-- Contenido a la derecha -->
   <div class="product-content">
-    <!-- Descripción del producto -->
     <mat-card class="product-description">
       <mat-card-title>{{ p.brand }} - {{ p.model }}</mat-card-title>
       <!-- //TODO: ADD TRANSLATION -->
@@ -50,11 +47,37 @@
       </mat-card-content>
     </mat-card>
 
-    <!-- Acciones (selección de variantes y botones) -->
     <mat-card class="product-actions">
       <mat-card-content>
-        <p>Configure your product before purchase:</p>
+        <p>Select your options before purchase:</p>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Color</mat-label>
+          <mat-select
+            [value]="selectedColor()"
+            (selectionChange)="selectColor($event.value)"
+            [disabled]="p.colors?.length === 0"
+          >
+            <mat-option *ngFor="let color of p.colors" [value]="color">
+              {{ color.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Storage</mat-label>
+          <mat-select
+            [value]="selectedStorage()"
+            (selectionChange)="selectStorage($event.value)"
+            [disabled]="p.storages?.length === 0"
+          >
+            <mat-option *ngFor="let storage of p.storages" [value]="storage">
+              {{ storage.capacity }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </mat-card-content>
+
       <mat-card-actions>
         <button mat-raised-button color="primary">Buy Now</button>
         <button mat-raised-button color="accent">Add to Cart</button>
