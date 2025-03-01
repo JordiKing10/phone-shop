@@ -70,5 +70,10 @@ export class MasterStore {
       ]);
     }
   }
+
+  clearCart(): void {
+    this.cart.set([]);
+  }
+
   //#endregion
 }
