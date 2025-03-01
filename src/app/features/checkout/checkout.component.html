@@ -1,1 +1,46 @@
-<p>checkout works!</p>
+<div class="checkout-container">
+  <mat-card class="checkout-card">
+    <mat-card-title>Shopping Cart</mat-card-title>
+
+    <mat-list *ngIf="cart().length > 0; else emptyCart">
+      <mat-list-item *ngFor="let item of cart()">
+        <div class="cart-item">
+          <div class="cart-item-info">
+            <strong>{{ item.brand }} - {{ item.model }}</strong>
+            <span>{{ item.color.name }} | {{ item.storage.capacity }}</span>
+            <span class="cart-price">{{ item.price | currency }}</span>
+          </div>
+          <div class="cart-item-actions">
+            <button mat-icon-button (click)="updateQuantity(item.id, -1)">
+              <mat-icon>remove</mat-icon>
+            </button>
+            <span>{{ item.quantity }}</span>
+            <button mat-icon-button (click)="updateQuantity(item.id, 1)">
+              <mat-icon>add</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="removeItem(item.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-list-item>
+    </mat-list>
+
+    <div class="checkout-footer">
+      <p class="checkout-total">
+        <strong>Total:</strong>
+        {{ getTotalPrice() | currency }}
+      </p>
+      <div class="checkout-actions">
+        <button mat-stroked-button color="warn" (click)="clearCart()">
+          Clear Cart
+        </button>
+        <button mat-flat-button color="primary">Proceed to Payment</button>
+      </div>
+    </div>
+  </mat-card>
+
+  <ng-template #emptyCart>
+    <p class="empty-cart">Your cart is empty</p>
+  </ng-template>
+</div>

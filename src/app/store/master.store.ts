@@ -75,5 +75,19 @@ export class MasterStore {
     this.cart.set([]);
   }
 
+  updateCartQuantity(itemId: string, newQuantity: number): void {
+    const updatedCart = this.cart().map((item) =>
+      item.id === itemId
+        ? { ...item, quantity: Math.max(1, newQuantity) }
+        : item
+    );
+    this.cart.set(updatedCart);
+  }
+
+  removeFromCart(itemId: string): void {
+    const updatedCart = this.cart().filter((item) => item.id !== itemId);
+    this.cart.set(updatedCart);
+  }
+
   //#endregion
 }
