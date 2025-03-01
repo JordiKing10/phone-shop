@@ -24,14 +24,33 @@
       class="product-card"
       (click)="navigateToProduct(product.id)"
     >
-      <mat-card-header>
+      <!-- Imagen del producto -->
+      <div class="image-container">
+        <img mat-card-image [src]="getProductImage(product)" alt="Product" />
+      </div>
+
+      <!-- Contenido del producto -->
+      <mat-card-content class="product-info">
         <mat-card-title>
           {{ product.brand }} - {{ product.model }}
         </mat-card-title>
-      </mat-card-header>
-      <img mat-card-image [src]="getProductImage(product)" alt="Product" />
-      <mat-card-content>
-        <p>Price: {{ product.price | currency }}</p>
+        <p class="price">{{ product.price | currency }}</p>
+
+        <!-- Información rápida -->
+        <div class="quick-specs">
+          <span>
+            <mat-icon>memory</mat-icon>
+            {{ product.cpu }}
+          </span>
+          <span>
+            <mat-icon>storage</mat-icon>
+            {{ product.ram }}
+          </span>
+          <span>
+            <mat-icon>battery_charging_full</mat-icon>
+            {{ product.battery }}
+          </span>
+        </div>
       </mat-card-content>
     </mat-card>
   </div>

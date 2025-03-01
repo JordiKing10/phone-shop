@@ -71,10 +71,9 @@ mat-toolbar {
 }
 
 .product-grid {
-  flex: 1;
   display: grid;
   padding: 16px;
-  gap: 30px;
+  gap: 16px;
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(4, 1fr);
@@ -89,14 +88,15 @@ mat-toolbar {
 .product-card {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: auto;
   max-width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
   cursor: pointer;
 
-  img {
-    object-fit: cover;
-    width: 100%;
-    height: 200px;
+  &:hover {
+    transform: translateY(-3px);
   }
 }
 
@@ -105,4 +105,48 @@ mat-toolbar {
   padding: 16px;
   text-align: center;
   margin-top: 16px;
+}
+
+.image-container {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.product-info {
+  padding: 12px;
+  text-align: center;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--accent-color);
+  margin-bottom: 8px;
+}
+
+.quick-specs {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 8px;
+  font-size: 0.9rem;
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  mat-icon {
+    font-size: 18px;
+  }
 }
