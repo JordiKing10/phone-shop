@@ -59,6 +59,9 @@ export class CheckoutComponent {
   }
 
   openConfirmationDialog(): void {
+    if (this.cartCount() === 0) {
+      return;
+    }
     this.dialog.open(CheckoutDialogComponent, {
       width: '400px',
       data: {

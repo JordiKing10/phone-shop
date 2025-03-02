@@ -73,3 +73,10 @@ mat-form-field {
   width: 100%;
   max-width: 300px;
 }
+
+.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(
+    .mat-mdc-option-multiple
+  ) {
+  background-color:
+    var(--mat-sys-primary-fixed-dim), var(--mat-sys-primary-fixed-lum);
+}
